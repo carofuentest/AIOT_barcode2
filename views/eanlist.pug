@@ -1,0 +1,37 @@
+extends layout
+
+
+block content
+    h1.
+
+    body
+    .container
+      h2.sub-header Product List
+      p
+        | 
+      .table-responsive
+        table.table.table-striped
+          thead
+            tr
+              th Code
+              th Product Description
+              th Scan time
+          tbody
+          - var aux = 0
+          - var max = 0
+          each mongo_result, i in eanlist
+            tr
+              td: a(href="/eandetail?eanSelected="+mongo_result.codenumber)=mongo_result.codenumber
+              - var eanSelected=mongo_result.codenumber
+              input#eanID.form-control(type="hidden", name="id", value=mongo_result.codenumber)
+              td=mongo_result.products.description
+              - var lengthCol = mongo_result.timestamp.length
+              - var aux = lengthCol
+              if (lengthCol > aux)
+                - aux = lengthCol
+                - max = aux
+              else
+                - max = 1
+              - for (var x = mongo_result.timestamp.length-1; x > -1; x--)
+                td=moment(mongo_result.timestamp[x]).format("DD/MM/YY/HH:mm")
+

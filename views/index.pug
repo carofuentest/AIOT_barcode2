@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  script.
+      function read() {
+      console.log('something');
+      var texto = "The button was pressed!";
+      }
+
+  h1= title
+  p Welcome to #{title}
+    form(action='http://10.16.183.196:3000/', method='GET')
+      | scan Barcode: 
+      input(type='text', name='first_name')
+      |  
+      input(type='submit', value='Save')
+  p
+  form(action='/users', method='POST')
+      | scan Barcode: 
+      input(type='text', name='eanCode')
+      |  
+      input(type='submit', value='Submit')
+
+
+
+

@@ -1,0 +1,73 @@
+extends layout
+
+block content
+    h1= title
+    //#p #{title}
+    body
+    table
+      tr
+        th Product Description:
+        td #{prdName}
+      tr
+      tr
+        th Brand
+        td #{prdBrand}
+      tr
+      tr
+        th Product Characteristics
+        td #{prdChar}
+      tr
+      tr
+        th Ingredients
+        td #{prdIngr}
+      tr
+      tr
+        th Nutritional Information
+        td #{prdNutr}
+      tr
+      tr
+        th Health score
+        td #{prdHealth}
+      tr
+      //tr
+        //th(rowspan='2') qtyContents:
+        //td #{prdQty}
+      tr
+        th qtyContents:
+        td #{prdQty}
+      tr
+      tr
+        th Best before
+        td #{prdBestDate}
+      tr
+      tr
+        th Use by
+        td #{prdUseDate}
+      tr
+    br
+    form#formjsonData(name="jsonData",method="get",action="/jsonData")
+      button#btnView(type="submit") View json
+    br
+    br
+    br
+    br
+    p Prices
+    table
+      tr
+        th Supermarket
+        th Price
+        th Last Query
+      tr
+        td SM1
+        td $2
+        td dd/mm/yyyy
+      tr
+        td SM2
+        td $4
+        td dd/mm/yyyy
+      tr
+        td SM3
+        td $3
+        td dd/mm/yyyy
+    br
+    button(type='button', onclick="location.href='http://www.mysupermarket.co.uk/tesco-price-comparison/Fresh_Milk/Tesco_Semi_Skimmed_Milk_4_Pints_227L.html?TrackingCode=131.Z5potgMCgUOntAt9pjR_PQ';") MySupermarket!

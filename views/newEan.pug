@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1= title
+    form#formAddEan(name="addean",method="post",action="/addean")
+        input#inputEANcode(type="text", placeholder="eancode", name="eancode", autofocus='')
+        button#btnSubmit(type="submit") submit

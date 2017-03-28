@@ -1,0 +1,77 @@
+extends layout
+
+block content
+    h1.
+
+    body
+    .container
+      h2.sub-header Product List
+      p
+        | 
+      .table-responsive
+        table.table.table-striped
+          thead
+            tr
+              th Code
+              th Product Description
+              th Scan time
+          tbody
+          - var aux = 0
+          - var max = 0
+          each mongo_result, i in eanlist
+            tr
+              td: a(href="/eandetail?eanSelected="+mongo_result.codenumber)=mongo_result.codenumber
+              - var eanSelected=mongo_result.codenumber
+              input#eanID.form-control(type="hidden", name="id", value=mongo_result.codenumber)
+              td=mongo_result.products.description
+              - var lengthCol = mongo_result.timestamp.length
+              - var aux = lengthCol
+              if (lengthCol > aux)
+                - aux = lengthCol
+                - max = aux
+              else
+                - 
+
+
+              - for (var x = mongo_result.timestamp.length; x >= 0; x--)
+                td=moment(mongo_result.timestamp[x-1]).format("DD/MM/YY/HH:mm")
+
+
+              
+
+              
+              
+            
+    ul
+
+        //each codenumber, i in eanlist
+            //li
+                //a(href='/eandetail')=codenumber.codenumber
+                //a(href='/eandetail?eanSelected='+codenumber.codenumber)=codenumber.codenumber
+                //- var eanSelected=codenumber.codenumber
+                //input.form-control(type='hidden', name='id', value='codenumber.codenumber')
+                //input#inputID(type="hidden", placeholder="id", name="id", value="holi holi")
+                //input#eanID.form-control(type="hidden", name="id", value=codenumber.codenumber)
+
+
+        each mongo_result, i in eanlist
+          for result in mongo_result.timestamp
+            - var timelength=result.lenght
+
+        - var col=12
+        table
+          tr
+            th Code
+            th Product description
+            th(colspan=col) Scan time
+
+          tr
+          each mongo_result, i in eanlist
+            tr
+              td: a(href="/eandetail?eanSelected="+mongo_result.codenumber)=mongo_result.codenumber
+              - var eanSelected=mongo_result.codenumber
+              input#eanID.form-control(type="hidden", name="id", value=mongo_result.codenumber)
+              td=mongo_result.products.description
+              //td=mongo_result.timestamp
+              for result in mongo_result.timestamp
+                td #{result}
